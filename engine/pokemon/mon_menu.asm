@@ -1193,12 +1193,9 @@ PlaceMoveData:
 	hlcoord 2, 12
 	predef PrintMoveType
 	ld a, [wCurSpecies]
-	dec a
-	ld hl, Moves + MOVE_POWER
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
+	ld l, a
+	ld a, MOVE_POWER
+	call GetMoveAttribute
 	hlcoord 16, 12
 	cp 2
 	jr c, .no_power
@@ -1246,9 +1243,7 @@ PlaceMoveScreenLeftArrow:
 	ld a, [hl]
 	and a
 	jr z, .prev
-	cp EGG
-	jr z, .prev
-	cp NUM_POKEMON + 1
+	cp MON_TABLE_ENTRIES + 1
 	jr c, .legal
 
 .prev
@@ -1279,9 +1274,7 @@ PlaceMoveScreenRightArrow:
 	ret z
 	and a
 	jr z, .next
-	cp EGG
-	jr z, .next
-	cp NUM_POKEMON + 1
+	cp MON_TABLE_ENTRIES + 1
 	jr c, .legal
 
 .next

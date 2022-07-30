@@ -60,6 +60,10 @@ sRTCStatusFlags:: db
 sLuckyNumberDay:: db
 sLuckyIDNumber::  dw
 
+SECTION "Saved 16-bit conversion tables", SRAM
+; the Pokémon index table isn't stored here to improve save data packing
+sMoveIndexTable:: ds wMoveIndexTableEnd - wMoveIndexTable
+sBackupMoveIndexTable:: ds wMoveIndexTableEnd - wMoveIndexTable
 
 SECTION "Backup Save", SRAM
 
@@ -67,13 +71,21 @@ sBackupOptions:: ds wOptionsEnd - wOptions
 
 sBackupCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruption
 
+sBackupSaveData::
+
 sBackupGameData::
 sBackupPlayerData::  ds wPlayerDataEnd - wPlayerData
 sBackupCurMapData::  ds wCurMapDataEnd - wCurMapData
 sBackupPokemonData:: ds wPokemonDataEnd - wPokemonData
 sBackupGameDataEnd::
 
-	ds $18a
+sBackupPokemonIndexTable:: ds wPokemonIndexTableEnd - wPokemonIndexTable
+
+sBackupConversionTableChecksum:: dw
+
+sBackupSaveDataEnd::
+
+	ds $88
 
 sBackupChecksum:: dw
 
@@ -88,13 +100,21 @@ sOptions:: ds wOptionsEnd - wOptions
 
 sCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruption
 
+sSaveData::
+
 sGameData::
 sPlayerData::  ds wPlayerDataEnd - wPlayerData
 sCurMapData::  ds wCurMapDataEnd - wCurMapData
 sPokemonData:: ds wPokemonDataEnd - wPokemonData
 sGameDataEnd::
 
-	ds $18a
+sPokemonIndexTable:: ds wPokemonIndexTableEnd - wPokemonIndexTable
+
+sConversionTableChecksum:: dw
+
+sSaveDataEnd::
+
+	ds $88
 
 sChecksum:: dw
 
@@ -153,7 +173,7 @@ sBattleTowerChallengeState::
 sNrOfBeatenBattleTowerTrainers:: db
 sBTChoiceOfLevelGroup:: db
 ; Battle Tower trainers are saved here, so nobody appears more than once
-sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH ; sbe48
+sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH ; bf1a
 sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
@@ -161,12 +181,12 @@ sBTMonOfTrainers::
 ; team of previous trainer
 ; sBTMonPrevTrainer1 - sBTMonPrevTrainer3
 for n, 1, BATTLETOWER_PARTY_LENGTH + 1
-sBTMonPrevTrainer{d:n}:: db
+sBTMonPrevTrainer{d:n}:: dw
 endr
 ; team of preprevious trainer
 ; sBTMonPrevPrevTrainer1 - sBTMonPrevPrevTrainer3
 for n, 1, BATTLETOWER_PARTY_LENGTH + 1
-sBTMonPrevPrevTrainer{d:n}:: db
+sBTMonPrevPrevTrainer{d:n}:: dw
 endr
 
 
@@ -179,21 +199,34 @@ MACRO boxes
 	sBox{d:box_n}:: box sBox{d:box_n}
 	endr
 ENDM
+DEF boxindex_n = 0
+MACRO boxesindexes
+	rept \1
+		DEF boxindex_n += 1
+	sBox{d:boxindex_n}PokemonIndexes:: ds 2 * MONS_PER_BOX
+	endr
+ENDM
 
 SECTION "Boxes 1-7", SRAM
 
 ; sBox1 - sBox7
 	boxes 7
 
+	boxesindexes 7
+
 SECTION "Boxes 8-14", SRAM
 
 ; sBox8 - sBox14
 	boxes 7
 
+	boxesindexes 7
+
 ; All 14 boxes fit exactly within 2 SRAM banks
 	assert box_n == NUM_BOXES, \
 		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"
 
+	assert boxindex_n == NUM_BOXES, \
+		"boxesindexes: Expected {d:NUM_BOXES} total boxes, got {d:boxindex_n}"
 
 SECTION "SRAM Mobile 1", SRAM
 
