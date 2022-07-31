@@ -1077,4 +1077,14 @@ MACRO checkmaplockedmons
 	db checkmaplockedmons_command
 ENDM
 
+IF DEF(_DEBUG)
+	const givepokemove_command ; $ac
+MACRO givepokemove
+	db givepokemove_command
+	dw \1 ; move
+	dw \2 ; wPartyMon#
+	db \3 ; Move Number 0-3
+ENDM
+ENDC
+
 DEF NUM_EVENT_COMMANDS EQU const_value

@@ -17,7 +17,7 @@ GetName::
 	ld a, [wCurSpecies]
 	ld [wNamedObjectIndex], a
 
-	ld a, [wNamedObjectIndex]
+	ld a, [wNamedObjectType]
 	dec a ; MON_NAME
 	ld hl, GetPokemonName
 	jr z, .go
