@@ -31,32 +31,39 @@ ENDM
 
 ; Constant data (db, dw, dl) macros
 
-MACRO dwb
+dwb: MACRO
 	dw \1
 	db \2
 ENDM
 
-MACRO dbw
+dbw: MACRO
 	db \1
 	dw \2
 ENDM
 
-MACRO dbbbw
+dbbbw: MACRO
 	db \1, \2, \3
 	dw \4
 ENDM
 
-MACRO dbwbb
+dbwbb: MACRO
 	db \1
 	dw \2
 	db \3, \4
 ENDM
 
-MACRO dbwbw
+dbwbw: MACRO
 	db \1
 	dw \2
 	db \3
 	dw \4
+ENDM
+
+dbbwbw: MACRO
+	db \1, \2
+	dw \3
+	db \4
+	dw \5
 ENDM
 
 MACRO dn ; nybbles

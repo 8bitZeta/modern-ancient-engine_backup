@@ -3077,8 +3077,6 @@ wKenjiFightCount::   db ; unreferenced
 wParryFightCount::   db
 wErinFightCount::    db
 
-	ds 100
-
 wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
@@ -3181,9 +3179,8 @@ wParkBallsRemaining::
 wSafariBallsRemaining:: db
 wSafariTimeRemaining:: dw
 
-wPhoneList:: ds CONTACT_LIST_SIZE + 1
+wPhoneList:: ds CONTACT_LIST_SIZE
 
-	ds 22
 
 wLuckyNumberShowFlag:: db
 	ds 1
@@ -3251,7 +3248,6 @@ wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
 wPartyMonNicknamesEnd::
 
-	ds 22
 
 wPokedexCaught:: flag_array NUM_POKEMON
 wEndPokedexCaught::
