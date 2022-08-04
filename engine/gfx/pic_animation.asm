@@ -931,20 +931,28 @@ GetMonAnimPointer:
 
 .unown
 	assert BANK(UnownAnimationPointers) == BANK(UnownAnimationIdlePointers)
-	ld b, BANK(UnownAnimationPointers)
+	ld c, BANK(UnownAnimationPointers)
 	ld hl, UnownAnimationPointers - 2
+	ld de, UnownAnimationIdlePointers - 2
 	ld a, [wPokeAnimIdleFlag]
 	and a
-	jr z, .got_unown_pointer
-	ld hl, UnownAnimationIdlePointers - 2
+	jr nz, .got_unown_pointer
+	ld d, h
+	ld e, l
 .got_unown_pointer
 	ld a, [wPokeAnimSpeciesOrUnown]
-	add a, a
-	add a, l
 	ld l, a
-	adc h
-	sub l
-	jr .load_pointer
+	ld h, 0
+	add hl, hl
+	add hl, de
+	ld a, c
+	ld [wPokeAnimPointerBank], a
+	call GetFarWord
+	ld a, l
+	ld [wPokeAnimPointerAddr], a
+	ld a, h
+	ld [wPokeAnimPointerAddr + 1], a
+	ret
 
 .egg
 	ld hl, EggAnimation
