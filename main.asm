@@ -487,7 +487,6 @@ SECTION "Pic Animations 6", ROMX
 SECTION "Pic Animations 8", ROMX
 
 INCLUDE "gfx/pokemon/bitmask_pointers.asm"
-INCLUDE "gfx/pokemon/bitmasks.asm"
 
 
 SECTION "bank38", ROMX
