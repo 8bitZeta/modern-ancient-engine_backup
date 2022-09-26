@@ -82,7 +82,7 @@ MoveTableGarbageCollection:
 		                                            wBattleMonMoves + ___move, wEnemyMonMoves + ___move, wWildMonMoves + ___move, \
 		                                            wPlayerUsedMoves + ___move
 	endr
-	ld a, [wNamedObjectType] ;or any of its aliases...
+	ld a, [wNamedObjectIndex] ;or any of its aliases...
 	call .set_bit
 	; only valid sometimes
 	___conversion_bitmap_check_values .set_bit, wCurPlayerMove, wCurEnemyMove, wDisabledMove, wEnemyDisabledMove, wUnusedPlayerLockedMove, \
