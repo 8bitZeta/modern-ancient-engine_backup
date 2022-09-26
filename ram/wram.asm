@@ -442,7 +442,6 @@ wPlayerDefense:: dw
 wPlayerSpeed::   dw
 wPlayerSpAtk::   dw
 wPlayerSpDef::   dw
-	ds 1
 
 wEnemyStats::
 wEnemyAttack::  dw
@@ -450,7 +449,6 @@ wEnemyDefense:: dw
 wEnemySpeed::   dw
 wEnemySpAtk::   dw
 wEnemySpDef::   dw
-	ds 1
 
 wPlayerStatLevels::
 wPlayerAtkLevel::  db
@@ -462,7 +460,7 @@ wPlayerAccLevel::  db
 wPlayerEvaLevel::  db
 wPlayerAbility::   db
 wPlayerNature::    db
-	ds 1
+wPlayerStatLevelsEnd::
 
 wEnemyStatLevels::
 wEnemyAtkLevel::  db
@@ -474,7 +472,7 @@ wEnemyAccLevel::  db
 wEnemyEvaLevel::  db
 wEnemyAbility::   db
 wEnemyNature::    db
-	ds 1
+wEnemyStatLevelsEnd::
 
 wEnemyTurnsTaken::  db
 wPlayerTurnsTaken:: db
@@ -544,7 +542,7 @@ wEnemySafeguardCount:: db
 wEnemyLightScreenCount:: db
 wEnemyReflectCount:: db
 wTempAIAbility:: db
-	ds 2
+	ds 1
 
 wBattleWeather::
 ; 00 normal
