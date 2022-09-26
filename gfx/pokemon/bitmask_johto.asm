@@ -50,6 +50,7 @@ JohtoBitmaskPointers:
 	dw MurkrowBitmasks
 	dw SlowkingBitmasks
 	dw MisdreavusBitmasks
+	dw UnownBitmasks
 	dw WobbuffetBitmasks
 	dw GirafarigBitmasks
 	dw PinecoBitmasks
@@ -151,6 +152,7 @@ UmbreonBitmasks:    INCLUDE "gfx/pokemon/johto/umbreon/bitmask.asm"
 MurkrowBitmasks:    INCLUDE "gfx/pokemon/johto/murkrow/bitmask.asm"
 SlowkingBitmasks:   INCLUDE "gfx/pokemon/johto/slowking/bitmask.asm"
 MisdreavusBitmasks: INCLUDE "gfx/pokemon/johto/misdreavus/bitmask.asm"
+UnownBitmasks:      INCLUDE "gfx/pokemon/johto/unown/bitmask.asm"
 WobbuffetBitmasks:  INCLUDE "gfx/pokemon/johto/wobbuffet/bitmask.asm"
 GirafarigBitmasks:  INCLUDE "gfx/pokemon/johto/girafarig/bitmask.asm"
 PinecoBitmasks:     INCLUDE "gfx/pokemon/johto/pineco/bitmask.asm"
