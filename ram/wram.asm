@@ -442,6 +442,7 @@ wPlayerDefense:: dw
 wPlayerSpeed::   dw
 wPlayerSpAtk::   dw
 wPlayerSpDef::   dw
+	ds 1
 
 wEnemyStats::
 wEnemyAttack::  dw
@@ -449,6 +450,7 @@ wEnemyDefense:: dw
 wEnemySpeed::   dw
 wEnemySpAtk::   dw
 wEnemySpDef::   dw
+	ds 1
 
 wPlayerStatLevels::
 wPlayerAtkLevel::  db
@@ -458,9 +460,7 @@ wPlayerSAtkLevel:: db
 wPlayerSDefLevel:: db
 wPlayerAccLevel::  db
 wPlayerEvaLevel::  db
-wPlayerAbility::   db
-wPlayerNature::    db
-wPlayerStatLevelsEnd::
+	ds 1
 
 wEnemyStatLevels::
 wEnemyAtkLevel::  db
@@ -470,9 +470,7 @@ wEnemySAtkLevel:: db
 wEnemySDefLevel:: db
 wEnemyAccLevel::  db
 wEnemyEvaLevel::  db
-wEnemyAbility::   db
-wEnemyNature::    db
-wEnemyStatLevelsEnd::
+	ds 1
 
 wEnemyTurnsTaken::  db
 wPlayerTurnsTaken:: db
@@ -541,7 +539,8 @@ wPlayerReflectCount:: db
 wEnemySafeguardCount:: db
 wEnemyLightScreenCount:: db
 wEnemyReflectCount:: db
-wTempAIAbility:: db
+	ds 1
+
 	ds 1
 
 wBattleWeather::
@@ -2615,10 +2614,8 @@ wBaseUnknown1:: db
 wBaseEggSteps:: db
 wBaseUnknown2:: db
 wBasePicSize:: db
-wBaseAbilities::
-wBaseAbility1:: db ; d248
-wBaseAbility2:: db ; d249
-	ds 2
+wBaseUnusedFrontpic:: dw
+wBaseUnusedBackpic:: dw
 wBaseGrowthRate:: db
 wBaseEggGroups:: db
 wBaseTMHM:: flag_array NUM_TM_HM_TUTOR
