@@ -385,7 +385,7 @@ MACRO ___conversion_bitmap_free_unused
 			ld [hld], a
 			ld [hl], a
 			dec b
-			if ___iteration < (\2_ENTRIES & 7)
+			if (___iteration + 1) < (\2_ENTRIES & 7)
 				; no point incrementing the pointer if it is the last iteration
 				set 0, l
 				inc l ;no overflow is possible here
