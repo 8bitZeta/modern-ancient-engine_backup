@@ -2871,15 +2871,13 @@ _NewPokedexEntry:
 Pokedex_SetBGMapMode3:
 	ld a, $3
 	ldh [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
+	call Delay2
 	ret
 
 Pokedex_SetBGMapMode4:
 	ld a, $4
 	ldh [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
+	call Delay2
 	ret
 
 Pokedex_SetBGMapMode_3ifDMG_4ifCGB:
